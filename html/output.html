@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header, nav, section, footer {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            color: #fff;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 0;
+            padding: 1em;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        section h2 {
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Menambahkan style untuk form */
+        .center-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Menambahkan style untuk hasil */
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Output</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="palindrome.html">Palindrome</a></li>
+            <li><a href="output.html">Output</a></li>
+            <li><a href="array.html">Array</a></li>
+            <li><a href="stringcde.html">Stringcde</a></li>
+            <li><a href="substring.html">Substring</a></li>
+        </ul>
+    </nav>
+
+    <section class="container">
+        <h2>Output</h2>
+       <!-- Menambahkan class center-form pada form -->
+       <form class="form-inline mb-4 center-form">
+        <label for="patternInput" class="form-label"></label>
+        <input type="number" class="form-control mr-2" id="patternInput" placeholder="Masukkan angka di sini">
+        <button type="button" class="btn btn-outline-primary check-btn" onclick="generatePattern()">submit</button>
+    </form>
+    <p id="result"></p>
+    <p id="patternResult"></p>
+</section>
+ 
+    <script>
+        function generatePattern() {
+            const userInput = document.getElementById('patternInput').value;
+            const n = parseInt(userInput);
+            if (!isNaN(n)) {
+                console.log(`Input: ${n}`);
+
+                let l = 1;
+                let r = 3;
+                let result = '';
+ 
+                for (let i = 1; i <= n; i++) {
+                    let p = Array.from({ length: n + 3 }, (_, index) => index + 1);
+                    p.splice(l, 2, '*', '*');
+                    result += p.join('') + '<br>';
+
+                    r += 1;
+                    l += 1;
+
+                }
+ 
+                document.getElementById('patternResult').innerHTML = result;
+
+            } else {
+
+                console.log("Invalid input. Please enter a number.");
+
+            }
+
+        }
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

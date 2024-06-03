@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header, nav, section, footer {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            color: #fff;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 0;
+            padding: 1em;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        section h2 {
+            margin-bottom: 20px; /* Jarak antara judul dan input */
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Menambahkan style untuk form */
+        .center-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Style untuk input yang ditambahkan */
+        .added-input {
+            width: 40px;
+            height: 34px; /* Adjusted to match the button height */
+            margin-right: 5px; /* Adjusted to match the button margin */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Array</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="palindrome.html">Palindrome</a></li>
+            <li><a href="output.html">Output</a></li>
+            <li><a href="array.html">Array</a></li>
+            <li><a href="stringcde.html">Stringcde</a></li>
+            <li><a href="substring.html">Substring</a></li>
+        </ul>
+    </nav>
+
+    <section class="container">
+        <h2>Array</h2>
+        <!-- Menambahkan class center-form pada form -->
+        <form id="input-form" class="form-inline mb-4 center-form"> 
+            <label class="sr-only" for="inputText">Masukkan angka:</label>
+        </form>
+        <div>
+            <button type="button" class="btn btn-outline-primary mr-2" onclick="addInput()">add</button>
+            <button type="button" class="btn btn-outline-danger check-btn" onclick="performArrayOperation()">submit</button>
+        </div>
+        <p id="result"></p> 
+    </section>
+
+    <script>
+        const inputForm = document.getElementById('input-form');
+        
+        function addInput() {
+            const newInputDiv = document.createElement('div');
+            newInputDiv.classList.add('added-input');
+
+            const newInput = document.createElement('input');
+            newInput.setAttribute('type', 'text');
+            newInput.setAttribute('style', 'width: 100%; height: 100%;');
+            newInput.setAttribute('name', '');
+            newInput.setAttribute('id', '');
+
+            newInputDiv.appendChild(newInput);
+            inputForm.insertBefore(newInputDiv, inputForm.firstChild); // Insert before the first child
+        }
+
+        function performArrayOperation() {
+            // Your array operation logic here
+            const inputText = Array.from(inputForm.querySelectorAll('.added-input input')).map(input => input.value).join(',');
+            const inputArray = inputText.split(',').map(Number);
+
+            // Validate input to ensure all elements are numbers
+            if (inputArray.some(isNaN)) {
+                document.getElementById('result').innerText = 'Invalid input. Please enter valid numbers.';
+                return;
+            }
+
+            // Array operation logic (replace this with your own logic)
+            const resultArray = generateMultiplicationArray(inputArray);
+
+            // Displaying the array multiplication result
+            document.getElementById('result').innerText = 'Array multiplication result: ' + resultArray.join(', ');
+        }
+
+        function generateMultiplicationArray(inputArray) {
+            let resultArray = [];
+            for (let i = 0; i < inputArray.length; i++) {
+                let product = 1;
+                for (let j = 0; j < inputArray.length; j++) {
+                    if (i !== j) {
+                        product *= inputArray[j];
+                    }
+                }
+                resultArray.push(product);
+            }
+            return resultArray;
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/cor@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
